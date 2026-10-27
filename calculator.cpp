@@ -5,6 +5,7 @@
 
 #include <QKeyEvent>
 #include <QPushButton>
+#include <QFile>
 #include <QTimer>
 
 Calculator::Calculator(QWidget *parent)
@@ -13,6 +14,7 @@ Calculator::Calculator(QWidget *parent)
     , m_logic(new CalculatorLogic(this))
 {
     ui->setupUi(this);
+    loadStyleSheet();
     setupLayoutStretch();
     setupButtons();
 
@@ -27,6 +29,14 @@ Calculator::Calculator(QWidget *parent)
 Calculator::~Calculator()
 {
     delete ui;
+}
+
+void Calculator::loadStyleSheet()
+{
+    // 界面样式集中在 style.qss 中，通过 qrc 资源随程序一起发布
+    QFile styleFile(QStringLiteral(":/style.qss"));
+    if (styleFile.open(QIODevice::ReadOnly | QIODevice::Text))
+        setStyleSheet(QString::fromUtf8(styleFile.readAll()));
 }
 
 void Calculator::setupLayoutStretch()

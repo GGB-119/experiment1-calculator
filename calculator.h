@@ -33,6 +33,7 @@ private:
     };
 
     void setupButtons();               // 绑定按钮与动作
+    void loadStyleSheet();
     void setupLayoutStretch();
     void applyAction(Action action);   // 唯一的动作处理入口
     void updateDisplay();

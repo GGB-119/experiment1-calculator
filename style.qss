@@ -1,0 +1,106 @@
+/* ===== 计算器整体风格：浅色背景 + 圆角按键 ===== */
+
+QWidget#Calculator {
+    background-color: #F4F6FB;
+}
+
+/* 显示区 */
+QFrame#displayPanel {
+    background-color: #FFFFFF;
+    border-radius: 18px;
+}
+
+QLabel#expressionLabel {
+    color: #8A93A6;
+    font-size: 15px;
+    padding-right: 8px;
+}
+
+QLineEdit#displayEdit {
+    background: transparent;
+    border: none;
+    color: #1B2430;
+    font-size: 38px;
+    font-weight: 500;
+    padding-right: 8px;
+    selection-background-color: transparent;
+}
+
+/* ===== 按键通用样式 ===== */
+QPushButton {
+    border: none;
+    border-radius: 14px;
+    font-size: 22px;
+    font-weight: 500;
+    color: #1B2430;
+}
+
+/* 数字键 */
+QPushButton#btn0, QPushButton#btn1, QPushButton#btn2, QPushButton#btn3,
+QPushButton#btn4, QPushButton#btn5, QPushButton#btn6, QPushButton#btn7,
+QPushButton#btn8, QPushButton#btn9, QPushButton#btnDot {
+    background-color: #FFFFFF;
+    color: #1B2430;
+}
+QPushButton#btn0:hover, QPushButton#btn1:hover, QPushButton#btn2:hover,
+QPushButton#btn3:hover, QPushButton#btn4:hover, QPushButton#btn5:hover,
+QPushButton#btn6:hover, QPushButton#btn7:hover, QPushButton#btn8:hover,
+QPushButton#btn9:hover, QPushButton#btnDot:hover {
+    background-color: #EAF0FA;
+}
+QPushButton#btn0:pressed, QPushButton#btn1:pressed, QPushButton#btn2:pressed,
+QPushButton#btn3:pressed, QPushButton#btn4:pressed, QPushButton#btn5:pressed,
+QPushButton#btn6:pressed, QPushButton#btn7:pressed, QPushButton#btn8:pressed,
+QPushButton#btn9:pressed, QPushButton#btnDot:pressed {
+    background-color: #DCE6F6;
+}
+
+/* 功能键：清除、退格、百分号、正负号 */
+QPushButton#btnClear, QPushButton#btnBackspace,
+QPushButton#btnPercent, QPushButton#btnSign {
+    background-color: #E7ECF6;
+    color: #33507A;
+    font-size: 20px;
+}
+QPushButton#btnClear:hover, QPushButton#btnBackspace:hover,
+QPushButton#btnPercent:hover, QPushButton#btnSign:hover {
+    background-color: #DCE4F2;
+}
+QPushButton#btnClear:pressed, QPushButton#btnBackspace:pressed,
+QPushButton#btnPercent:pressed, QPushButton#btnSign:pressed {
+    background-color: #CDD9EC;
+}
+QPushButton#btnClear {
+    color: #D64545;
+    font-weight: 600;
+}
+
+/* 运算符 */
+QPushButton#btnAdd, QPushButton#btnSubtract,
+QPushButton#btnMultiply, QPushButton#btnDivide {
+    background-color: #E3EFFC;
+    color: #1A73E8;
+    font-size: 24px;
+}
+QPushButton#btnAdd:hover, QPushButton#btnSubtract:hover,
+QPushButton#btnMultiply:hover, QPushButton#btnDivide:hover {
+    background-color: #D3E5FA;
+}
+QPushButton#btnAdd:pressed, QPushButton#btnSubtract:pressed,
+QPushButton#btnMultiply:pressed, QPushButton#btnDivide:pressed {
+    background-color: #C2DAF7;
+}
+
+/* 等号 */
+QPushButton#btnEquals {
+    background-color: #2F80ED;
+    color: #FFFFFF;
+    font-size: 26px;
+    font-weight: 600;
+}
+QPushButton#btnEquals:hover {
+    background-color: #2871D4;
+}
+QPushButton#btnEquals:pressed {
+    background-color: #1F5FB4;
+}

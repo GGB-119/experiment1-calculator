@@ -15,3 +15,6 @@ HEADERS += \
 
 FORMS += \
     calculator.ui
+
+RESOURCES += \
+    resources.qrc
