@@ -6,10 +6,12 @@ TEMPLATE = app
 
 SOURCES += \
     main.cpp \
-    calculator.cpp
+    calculator.cpp \
+    calculatorlogic.cpp
 
 HEADERS += \
-    calculator.h
+    calculator.h \
+    calculatorlogic.h
 
 FORMS += \
     calculator.ui
