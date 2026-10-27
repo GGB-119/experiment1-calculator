@@ -37,6 +37,7 @@ private:
     void setupLayoutStretch();
     void applyAction(Action action);   // 唯一的动作处理入口
     void updateDisplay();
+    void adjustDisplayFont(const QString &text);
     void flashButton(Action action);   // 键盘输入时给对应按钮按下反馈
     static bool actionForKey(int key, Qt::KeyboardModifiers modifiers, Action *action);
 

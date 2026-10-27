@@ -109,8 +109,30 @@ void Calculator::applyAction(Action action)
 
 void Calculator::updateDisplay()
 {
-    ui->displayEdit->setText(m_logic->displayText());
+    const QString text = m_logic->displayText();
+    ui->displayEdit->setText(text);
     ui->expressionLabel->setText(m_logic->expressionText());
+    adjustDisplayFont(text);
+}
+
+void Calculator::adjustDisplayFont(const QString &text)
+{
+    // 数字过长或显示中文提示时自动缩小字号，保证内容完整显示
+    int width = 0;
+    for (const QChar &ch : text)
+        width += ch.unicode() > 0x2E80 ? 2 : 1;  // 中文字符按两个字符宽度计算
+
+    int pixelSize = 38;
+    if (width > 8)  pixelSize = 34;
+    if (width > 10) pixelSize = 30;
+    if (width > 12) pixelSize = 26;
+    if (width > 15) pixelSize = 22;
+
+    QFont font = ui->displayEdit->font();
+    if (font.pixelSize() != pixelSize) {
+        font.setPixelSize(pixelSize);
+        ui->displayEdit->setFont(font);
+    }
 }
 
 void Calculator::keyPressEvent(QKeyEvent *event)

@@ -20,7 +20,6 @@ QLineEdit#displayEdit {
     background: transparent;
     border: none;
     color: #1B2430;
-    font-size: 38px;
     font-weight: 500;
     padding-right: 8px;
     selection-background-color: transparent;
