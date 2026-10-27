@@ -79,7 +79,20 @@ void Calculator::applyAction(Action action)
     case Action::Clear:     m_logic->clear();       break;
     case Action::Sign:      m_logic->toggleSign();  break;
     case Action::Percent:   m_logic->percent();     break;
-    default:                                        break;  // 四则运算在下一阶段实现
+    case Action::Add:
+        m_logic->inputOperator(CalculatorLogic::Operator::Add);
+        break;
+    case Action::Subtract:
+        m_logic->inputOperator(CalculatorLogic::Operator::Subtract);
+        break;
+    case Action::Multiply:
+        m_logic->inputOperator(CalculatorLogic::Operator::Multiply);
+        break;
+    case Action::Divide:
+        m_logic->inputOperator(CalculatorLogic::Operator::Divide);
+        break;
+    case Action::Equals:    m_logic->inputEquals(); break;
+    default:                                        break;
     }
 }
 
