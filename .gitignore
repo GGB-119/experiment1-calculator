@@ -6,3 +6,5 @@ Makefile.*
 debug/
 release/
 *.o
+tests/build_*/
+tests/*.moc
