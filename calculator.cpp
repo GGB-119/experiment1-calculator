@@ -5,6 +5,7 @@
 
 #include <QKeyEvent>
 #include <QPushButton>
+#include <QTimer>
 
 Calculator::Calculator(QWidget *parent)
     : QWidget(parent)
@@ -104,5 +105,54 @@ void Calculator::updateDisplay()
 
 void Calculator::keyPressEvent(QKeyEvent *event)
 {
+    // 键盘事件先翻译成与鼠标按钮相同的 Action，再走同一个 applyAction()
+    Action action = Action::Clear;
+    if (actionForKey(event->key(), event->modifiers(), &action)) {
+        flashButton(action);
+        applyAction(action);
+        event->accept();
+        return;
+    }
+
     QWidget::keyPressEvent(event);
+}
+
+bool Calculator::actionForKey(int key, Qt::KeyboardModifiers modifiers, Action *action)
+{
+    Q_UNUSED(modifiers)
+
+    // 主键盘和小键盘的数字键都映射到 Digit0 ~ Digit9
+    if (key >= Qt::Key_0 && key <= Qt::Key_9) {
+        *action = static_cast<Action>(static_cast<int>(Action::Digit0) + (key - Qt::Key_0));
+        return true;
+    }
+
+    switch (key) {
+    case Qt::Key_Period:
+    case Qt::Key_Comma:      *action = Action::Dot;       return true;
+    case Qt::Key_Plus:       *action = Action::Add;       return true;
+    case Qt::Key_Minus:      *action = Action::Subtract;  return true;
+    case Qt::Key_Asterisk:   *action = Action::Multiply;  return true;
+    case Qt::Key_Slash:      *action = Action::Divide;    return true;
+    case Qt::Key_Return:
+    case Qt::Key_Enter:
+    case Qt::Key_Equal:      *action = Action::Equals;    return true;
+    case Qt::Key_Backspace:  *action = Action::Backspace; return true;
+    case Qt::Key_Escape:
+    case Qt::Key_Delete:     *action = Action::Clear;     return true;
+    case Qt::Key_Percent:    *action = Action::Percent;   return true;
+    case Qt::Key_F9:         *action = Action::Sign;      return true;
+    default:                 break;
+    }
+    return false;
+}
+
+void Calculator::flashButton(Action action)
+{
+    QPushButton *button = m_buttons.value(action, nullptr);
+    if (!button)
+        return;
+
+    button->setDown(true);
+    QTimer::singleShot(80, button, [button] { button->setDown(false); });
 }
